@@ -1,1 +1,1 @@
-use haskell
+from haskell
