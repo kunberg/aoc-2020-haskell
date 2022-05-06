@@ -1,9 +1,17 @@
-import qualified Data.Set as Set
+import Control.Monad (liftM)
 
-fromFile k x path = solve k x <$> map read <$> lines <$> readFile path
+fromFile f path = f <$> parse <$> readFile path
 
-solve k x = map product . filter ((x ==) . sum) . choose k
+parse = map (read @Int) . lines
 
-choose 1    es  = map Set.singleton es 
-choose k (e:es) = map (Set.insert e) (choose (k-1) es) ++ choose k es
-choose _ _      = []
+first = liftM (uncurry (*)) . two 2020
+
+two x (n:ns) = if any (== (x - n)) ns
+               then Just (n, (x - n))
+               else two x ns
+two _ _ = Nothing
+
+second (n:ns) = case two (2020 - n) ns of
+                    Nothing -> second ns
+                    Just (a, b) -> Just (a * b * n)
+second _ = Nothing
