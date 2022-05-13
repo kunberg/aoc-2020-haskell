@@ -1,8 +1,7 @@
 --{-# LANGUAGE BlockArguments #-}
 {-# LANGUAGE EmptyCase #-}
 {-# LANGUAGE LambdaCase #-}
-{-# LANGUAGE LambdaCase #-}
-{-# LANGUAGE LambdaCase #-}
+
 import Text.Parsec.String
 import Text.Parsec
 import Control.Applicative (liftA2)
